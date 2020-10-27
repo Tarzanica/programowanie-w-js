@@ -20,7 +20,22 @@ function onKeyPress(ev){
             break;
         case 'KeyF':
             soundId = 'openhat';
-            break;          
+            break;     
+        case 'KeyG':
+            soundId = 'ride';
+            break; 
+        case 'KeyH':
+            soundId = 'snare';
+            break;   
+        case 'KeyJ':
+            soundId = 'tink';
+            break;    
+        case 'KeyK':
+            soundId = 'tom';
+            break;
+        case 'KeyL':
+            soundId = 'boom';
+            break;       
     }
     if (soundId) {
         const soundTime = Date.now() - recordStartTime;        
