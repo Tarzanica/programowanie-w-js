@@ -1,7 +1,8 @@
 
 document.body.addEventListener('keypress', onKeyPress);
-document.querySelector('#recordBtn').addEventListener('click', onRecordBtn);
-document.querySelector('#playBtn').addEventListener('click', onPlayBtn);
+const record = document.querySelector('#recordBtn').addEventListener('click', onRecordBtn);
+const play = document.querySelector('#playBtn').addEventListener('click', onPlayBtn);
+
 
 let recordedSound = [];
 let recordStartTime;
@@ -49,9 +50,12 @@ function onKeyPress(ev){
 }
 
 
-function onRecordBtn(){
+function onRecordBtn(){   
     recordStartTime = Date.now();
+    document.querySelector('#recordBtn').className = "disabled";
 }
+
+
 
 function onPlayBtn(){
     for (let index = 0; index < recordedSound.length; index++) {
@@ -62,9 +66,16 @@ function onPlayBtn(){
         soundObj.time
         );  
     }
+    document.querySelector('#playBtn').className = "disabled";
 }
 
 function playSound(soundId){
     sound = document.querySelector('#' + soundId);
     sound.play();  
+}
+
+function prevMultipleClicking(evt){
+    if (record || play) {
+        evt.preventDefault();
+    }
 }

@@ -1,0 +1,90 @@
+body *{
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+ 
+section>div{
+    display: inline-block;
+    width: 346px;
+    padding-bottom: 100vh;
+    margin: 0;
+    border-top: 1px solid black;
+}
+
+section>div:nth-child(1){
+    background: rgb(63, 66, 66);
+}
+
+section>div:nth-child(2){
+    background: rgb(47, 63, 63);
+}
+section>div:nth-child(3){
+    background: rgb(46, 51, 58);
+}
+section>div:nth-child(4){
+    background: rgb(39, 48, 80);
+}
+section{
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title{
+    max-width: 1400px;
+    background: teal;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+h1{
+    font-size: 40px;
+    margin: 0;
+    padding-left: 70px;
+    letter-spacing: 2px;
+}
+
+h2{
+    font-size: 30px;
+    letter-spacing: 1px;
+    padding: 10px 10px 10px 70px;
+}
+
+button{
+    width: 100px;
+    padding: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#recordBtn{
+    background-color: red;
+    color: white;
+}
+
+#playBtn{
+    background-color: springgreen;
+}
+
+button:first-of-type{
+    margin-left: 70px;
+}
+
+#recordBtn:hover{
+    background-color: rgb(240, 204, 204);
+    color: black;
+}
+
+#playBtn:hover{
+    background-color: rgb(30, 65, 20);
+    color: white;
+}
+
+.disabled{
+    pointer-events: none;
+    cursor: not-allowed;
