@@ -3,7 +3,6 @@ document.body.addEventListener('keypress', onKeyPress);
 const record = document.querySelector('#recordBtn').addEventListener('click', onRecordBtn);
 const play = document.querySelector('#playBtn').addEventListener('click', onPlayBtn);
 
-
 let recordedSound = [];
 let recordStartTime;
 function onKeyPress(ev){
@@ -32,7 +31,7 @@ function onKeyPress(ev){
             soundId = 'tink';
             break;    
         case 'KeyK':
-            soundId = 'tom';
+            soundId = 'tom';a
             break;
         case 'KeyL':
             soundId = 'boom';
@@ -54,8 +53,6 @@ function onRecordBtn(){
     recordStartTime = Date.now();
     document.querySelector('#recordBtn').className = "disabled";
 }
-
-
 
 function onPlayBtn(){
     for (let index = 0; index < recordedSound.length; index++) {

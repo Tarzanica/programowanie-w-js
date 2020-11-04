@@ -20,9 +20,11 @@ section>div:nth-child(1){
 section>div:nth-child(2){
     background: rgb(47, 63, 63);
 }
+
 section>div:nth-child(3){
     background: rgb(46, 51, 58);
 }
+
 section>div:nth-child(4){
     background: rgb(39, 48, 80);
 }
@@ -103,3 +105,4 @@ button:first-of-type{
 .disabled{
     pointer-events: none;
     cursor: not-allowed;
+}

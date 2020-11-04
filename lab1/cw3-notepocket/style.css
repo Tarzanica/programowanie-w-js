@@ -1,0 +1,76 @@
+html {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    background: rgb(238, 247, 247);
+    overflow: hidden;
+}
+
+
+h1,
+h2,
+h3,
+p {
+    letter-spacing: 1px;
+}
+
+.main-header {
+    color: white;
+    width: 100vw;
+    background: rgb(84, 141, 143);
+    padding: 20px;
+}
+
+.header-title {
+    width: 50%;
+}
+
+.logo {
+    padding: 20px;
+    float: left;
+    width: max-content;
+}
+
+.logo img {
+    width: 40px;
+    height: auto;
+}
+
+.note {
+    display: table-caption;
+    font-size: 20px;
+    padding: 10px 30px 5px 30px;
+}
+
+.note input {
+    padding: 10px;
+    margin: 10px 10px 10px 0;
+}
+
+.note textarea {
+    padding: 10px;
+    margin: 10px 10px 10px 0;
+}
+
+#newNoteBtn {
+    color: white;
+    margin-left: 30px;
+    font-size: large;
+    padding: 12px;
+    background: rgb(84, 141, 143);
+    border: none;
+}
+
+#newNoteBtn:hover {
+    background: rgb(71, 121, 122);
+}
+
+main {
+
+}
+
+section {
+    width: 30vw;
+}
