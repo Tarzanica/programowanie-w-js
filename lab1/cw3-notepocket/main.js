@@ -1,18 +1,61 @@
 const lsNotesKey = 'notes';
 
-// 1. how to store & save notes in local storage
+document.querySelector('#newNoteBtn').addEventListener('click', onNewNote);
+
+// 4. get value from html forms
+document.querySelector('#newNoteBtn').addEventListener('click', onNewNote);
+
+
 const notes = [];
 
 if (notes.length == 0) {    
     document.body.style.backgroundImage = "url('images/no-notes.png')";
 }
 
-function removeNote() {
-    const noteToRemove = document.querySelector();
-    notesContainer.removeChild(noteToRemove);
+// change textarea background color
+// const colorSelected = document.querySelectorAll('.select-bgcolor option');
+// console.log(colorSelected);
+
+// for (let i = 0; i < colorSelected.length; i++) {
+//     colorSelected[i].addEventListener('click', onChangeColor);    
+// }
+
+// function onChangeColor() {
+//     const content = document.querySelector('#noteContent');
+//     console.log(content);
+//     switch (colorSelected.value) {
+//         case "red":
+//             content.style.background = "red";
+//             break;
+//         case "pink":
+//             content.style.background = "pink";
+//             break;
+//         case "orange":
+//             content.style.background = "orange";
+//             break;
+//         case "yellow":
+//             content.style.background = "yellow";
+//             break;
+//         case "green":
+//             content.style.background = "green";
+//             break;
+//         case "blue":
+//             content.style.background = "blue";
+//             break;
+//         case "grey":
+//             content.style.background = "grey";
+//             break;
+//         case "white":
+//             content.style.background = "white";
+//         default:
+//             break;
+//     }
+// }
+
+function removeNote(e) {
+    let noteToRemove = e.target.parentNode;
+    noteToRemove.parentNode.removeChild(noteToRemove);
 }
-// 4. get value from html forms
-document.querySelector('#newNoteBtn').addEventListener('click', onNewNote);
 
 function onNewNote() {
     document.body.style.backgroundImage = "initial";
@@ -65,13 +108,10 @@ function onNewNote() {
         htmlNote.appendChild(htmlTime);
         htmlNote.appendChild(htmlButton);
         notesContainer.appendChild(htmlNote);
+
     }
 
     document.querySelector('#noteTitle').value = "";
     document.querySelector('#noteContent').value = "";
 }
-
-// eventhandlers
-
-document.querySelector('#newNoteBtn').addEventListener('click', onNewNote);
 

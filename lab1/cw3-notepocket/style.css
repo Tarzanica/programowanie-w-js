@@ -1,11 +1,11 @@
-html {
+html *{
     font-family: sans-serif;
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
     background: rgb(238, 247, 247);
-    overflow: hidden;
 }
 
 
@@ -51,19 +51,19 @@ button {
     height: auto;
 }
 
-.note {
+.note-add {
     display: table-caption;
     font-size: 20px;
     padding: 10px 30px 5px 30px;
 }
 
-.note input {
+.note-add input {
     font-size: large;
     padding: 10px;
     margin: 10px 10px 10px 0;
 }
 
-.note textarea {
+.note-add textarea {
     font-size: large;
     padding: 10px;
     margin: 10px 10px 10px 0;
@@ -102,4 +102,59 @@ section {
 .removeBtn {
     margin-left: 15px;
     padding: 10px;
+}
+
+select {
+    padding: 5px 10px;
+    margin: 20px 20px 20px 30px;
+    border: none;
+}
+
+option {
+    pointer-events: none;
+}
+
+.select-bgcolor option[value="red"] {
+    background: red;
+}
+.select-bgcolor option[value="pink"] {
+    background: pink;
+}
+.select-bgcolor option[value="orange"] {
+    background: orange;
+}
+.select-bgcolor option[value="yellow"] {
+    background: yellow;
+}
+.select-bgcolor option[value="green"] {
+    background: green;
+}
+.select-bgcolor option[value="blue"] {
+    background: blue;
+}
+.select-bgcolor option[value="purple"] {
+    background: purple;
+}
+.select-bgcolor option[value="grey"] {
+    background: grey;
+}
+.select-bgcolor option[value="white"] {
+    background: white;
+}
+
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.note {
+    width: 24em;
+    height: 20em;
+    margin: 30px;
+    padding: 20px 20px 20px 30px;
+    background: #fff;
+    border-radius: 2%;
+    box-shadow: 0 0.9rem 1.2rem rgba(0,0,0, 0.1);
+    border-bottom: 5px solid pink ;
 }
