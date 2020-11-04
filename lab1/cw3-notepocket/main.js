@@ -1,16 +1,21 @@
 const lsNotesKey = 'notes';
-document.querySelector('#newNoteBtn').addEventListener('click', onNewNote);
+
 // 1. how to store & save notes in local storage
 const notes = [];
 
-function removeNote() {
+if (notes.length == 0) {    
+    document.body.style.backgroundImage = "url('images/no-notes.png')";
+}
 
+function removeNote() {
+    const noteToRemove = document.querySelector();
+    notesContainer.removeChild(noteToRemove);
 }
 // 4. get value from html forms
 document.querySelector('#newNoteBtn').addEventListener('click', onNewNote);
 
 function onNewNote() {
-
+    document.body.style.backgroundImage = "initial";
     const title = document.querySelector('#noteTitle').value;
     const content = document.querySelector('#noteContent').value;
     const note = {
@@ -42,7 +47,7 @@ function onNewNote() {
     for (const note of convertedNotes) {
         
         const htmlNote = document.createElement('section');
-        const htmlTitle = document.createElement('h1');
+        const htmlTitle = document.createElement('h3');
         const htmlContent = document.createElement('p');
         const htmlTime = document.createElement('time');
         const htmlButton = document.createElement('button');
@@ -51,7 +56,8 @@ function onNewNote() {
         htmlTitle.innerHTML = note.title;
         htmlContent.innerHTML = note.content;
         htmlTime.innerHTML = note.createDate.toLocaleString();
-        htmlButton.innerHTML = 'remove';
+        htmlButton.innerHTML = 'Remove';
+        htmlButton.classList.add('removeBtn');
 
         htmlButton.addEventListener('click', removeNote);
         htmlNote.appendChild(htmlTitle);
@@ -61,6 +67,11 @@ function onNewNote() {
         notesContainer.appendChild(htmlNote);
     }
 
-
+    document.querySelector('#noteTitle').value = "";
+    document.querySelector('#noteContent').value = "";
 }
+
+// eventhandlers
+
+document.querySelector('#newNoteBtn').addEventListener('click', onNewNote);
 

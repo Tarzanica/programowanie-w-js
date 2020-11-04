@@ -12,8 +12,21 @@ body {
 h1,
 h2,
 h3,
+h4,
 p {
     letter-spacing: 1px;
+}
+
+button {
+    color: white;
+    background: rgb(84, 141, 143);
+    border: none;
+    font-size: large;
+}
+
+::placeholder {
+    font-size: large;
+    font-family: sans-serif;
 }
 
 .main-header {
@@ -45,32 +58,48 @@ p {
 }
 
 .note input {
+    font-size: large;
     padding: 10px;
     margin: 10px 10px 10px 0;
 }
 
 .note textarea {
+    font-size: large;
     padding: 10px;
     margin: 10px 10px 10px 0;
 }
 
+#noteTitle {
+    width: 240px;
+}
+
 #newNoteBtn {
-    color: white;
-    margin-left: 30px;
-    font-size: large;
+    float: right;
+    margin: 10px 15px 10px 7px;
     padding: 12px;
-    background: rgb(84, 141, 143);
-    border: none;
 }
 
 #newNoteBtn:hover {
     background: rgb(71, 121, 122);
 }
 
-main {
-
+.fa-thumbtack {
+    position: absolute;
+    color: grey;
+    font-size: 30px;
 }
 
+.fa-thumbtack:hover {
+    color: rgb(48, 100, 98);
+    transition: 0,3s;
+}
+
+
 section {
-    width: 30vw;
+    width: 33.3vw;
+}
+
+.removeBtn {
+    margin-left: 15px;
+    padding: 10px;
 }
