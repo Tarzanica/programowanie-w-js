@@ -94,6 +94,7 @@ function onNewNote() {
         const htmlContent = document.createElement('p');
         const htmlTime = document.createElement('time');
         const htmlButton = document.createElement('button');
+        // const htmlPinnedBtn = document.createElement ('i');
 
         htmlNote.classList.add('note');
         htmlTitle.innerHTML = note.title;
@@ -101,12 +102,15 @@ function onNewNote() {
         htmlTime.innerHTML = note.createDate.toLocaleString();
         htmlButton.innerHTML = 'Remove';
         htmlButton.classList.add('removeBtn');
+        // htmlPinnedBtn.classList.add('fas fa-thumbtack');
 
+        // htmlPinnedBtn.addEventListener('click', pinNote);
         htmlButton.addEventListener('click', removeNote);
         htmlNote.appendChild(htmlTitle);
         htmlNote.appendChild(htmlContent);
         htmlNote.appendChild(htmlTime);
         htmlNote.appendChild(htmlButton);
+        // htmlNote.appendChild(htmlPinnedBtn);
         notesContainer.appendChild(htmlNote);
 
     }

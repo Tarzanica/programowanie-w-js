@@ -83,10 +83,15 @@ button {
     background: rgb(71, 121, 122);
 }
 
+.more-options {
+    display: flex;
+}
+
 .fa-thumbtack {
-    position: absolute;
+    margin-left: 20px;
     color: grey;
-    font-size: 30px;
+    font-size: 25px;
+    align-self: center;
 }
 
 .fa-thumbtack:hover {
@@ -95,10 +100,6 @@ button {
 }
 
 
-section {
-    width: 33.3vw;
-}
-
 .removeBtn {
     margin-left: 15px;
     padding: 10px;
@@ -106,8 +107,7 @@ section {
 
 select {
     padding: 5px 10px;
-    margin: 20px 20px 20px 30px;
-    border: none;
+    margin: 5px 5px 5px 30px;
 }
 
 option {
@@ -144,17 +144,21 @@ option {
 
 
 main {
+
     display: flex;
     flex-wrap: wrap;
 }
 
 .note {
     width: 24em;
-    height: 20em;
     margin: 30px;
     padding: 20px 20px 20px 30px;
     background: #fff;
     border-radius: 2%;
     box-shadow: 0 0.9rem 1.2rem rgba(0,0,0, 0.1);
     border-bottom: 5px solid pink ;
+}
+
+.note p {
+    overflow-wrap: break-word;
 }
