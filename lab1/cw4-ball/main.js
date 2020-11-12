@@ -1,18 +1,37 @@
-window.addEventListener('deviceorientation', onDeviceMove);
+window.addEventListener('deviceorientation', onDeviceOrientationChange);
 
-const ball =  {
+document.querySelector('.start').addEventListener('click', onStartClick);
+
+const ballCoordinates =  {
     x: 0,
     y: 0
 }
 
-function gameInit() {
-    const 
-    ballStartPos = Math.random() * innerHeight;
-    ballEndPos = Math.random() * innerWidth;
-    ball.x = ballStartPos;
-    ball.y = ballEndPos;
+function onStartClick() {
+    const btn = document.querySelector('.start');
+     btn.classList.add('remove');
+
+    const ball = document.createElement('div');
+    ball.classList.add('ball');
+    document.body.appendChild(ball);
+    const hole = document.createElement('div');
+    hole.classList.add('hole');
+    document.body.appendChild(hole);
+
+    const ballStartXPos = Math.random() * innerWidth;
+    const ballStartYPos = Math.random() * innerHeight;
+
+    ballCoordinates.x = ballStartXPos;
+    ballCoordinates.y = ballStartYPos;
 }
 
-function onDeviceMove(ev) {
+
+
+function gameInit() {
+    
+    
+}
+
+function onDeviceOrientationChange(ev) {
     console.log(ev.alpha, ev.beta, ev.gamma);
 }

@@ -1,6 +1,38 @@
+body {
+    background-color: rgb(211, 211, 212);
+}
+
+.start {
+    position: fixed;
+    padding: 30px;
+    font-size: 100px;
+    top: 50%;
+    left: 50%;
+    border: burlywood;
+    border-radius: 1%;
+    transform: translate(-50%, -50%);
+}
+
+.remove {
+    display: none;
+}
+
 .hole {
-    position: relative;
+    background-color:rgb(84, 93, 139);
+    border: 2ps solid blue;
+	height: 70px;
+	width: 70px;
+	border-radius: 50%;
 }
-.number {
+.ball {
     position: absolute;
+    background-color: rgb(206, 36, 6);
+    border: 2px solid rgb(255, 0, 34);
+	height: 40px;
+	width: 40px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
