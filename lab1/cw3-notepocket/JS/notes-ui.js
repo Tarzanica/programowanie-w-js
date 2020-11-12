@@ -39,5 +39,10 @@ class NotesUI {
     getNotesContainer() {
         return this.notesContainer;
     }
+    clearNoteTitleAndContent(){
+        document.querySelector('#noteTitle').value = "";
+        document.querySelector('#noteContent').value = "";
+    }
 }
-export { addNote, createNote, removeNote, getNote, getNotesContainer};
+
+export {addNote, createNote, removeNote, getNote, getNotesContainer};

@@ -7,7 +7,7 @@ let recordedSound = [];
 let recordStartTime;
 function onKeyPress(ev){
     console.log(ev);
-    let sound;
+    let soundId;
     switch(ev.code){
         case 'KeyA':
             soundId = 'boom';

@@ -7,14 +7,15 @@ class Notes {
 
     addNote(note) {
         this.notes.push(note);
-        this.db.saveNotes(this.notes);
-        this.notesUI.addNote(note);
+        db.saveNotes(this.notes);
+        ui.addNote(note);
+        ui.clearNoteTitleAndContent(note);
     }
     removeNote(id) {
         this.notes = this.notes.filter(el => el.id !== id);
 
-        this.db.saveNotes(this.notes);
-        this.notesUI.removeNote(id);
+        db.saveNotes(this.notes);
+        ui.removeNote(id);
     }
     getNote(id) {
         return this.notes.find(el => el.id === id);
@@ -23,5 +24,10 @@ class Notes {
         return [...this.notes];
     }
 }
+
+
+import * as db from './db';
+import * as ui from './notes-ui';
+
 
 export {addNote, removeNote, getNote, getNotes};
