@@ -1,5 +1,7 @@
 body {
+    font-family: sans-serif;
     background-color: rgb(211, 211, 212);
+    overflow: hidden;
 }
 
 .start {
@@ -17,7 +19,30 @@ body {
     display: none;
 }
 
+.score {
+    position: absolute;
+    font-size: 30px;
+    background-color: cadetblue;
+    color: white;
+    padding: 10px;
+    top: 3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.restart {
+    top: 5%;
+    left: 5%;
+    font-size: 15px;
+    padding: 7px;
+    margin: 10px;
+    font-weight: bold;
+    letter-spacing: 1.6;
+}
+
+
 .hole {
+    position: absolute;
     background-color:rgb(84, 93, 139);
     border: 2ps solid blue;
 	height: 70px;
