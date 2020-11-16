@@ -7,7 +7,7 @@ body {
 .start {
     position: fixed;
     padding: 30px;
-    font-size: 100px;
+    font-size: 80px;
     top: 50%;
     left: 50%;
     border: burlywood;
@@ -45,19 +45,26 @@ body {
     position: absolute;
     background-color:rgb(84, 93, 139);
     border: 2ps solid blue;
-	height: 70px;
-	width: 70px;
+	height: 50px;
+	width: 50px;
 	border-radius: 50%;
 }
 .ball {
     position: absolute;
     background-color: rgb(206, 36, 6);
     border: 2px solid rgb(255, 0, 34);
-	height: 40px;
-	width: 40px;
+	height: 30px;
+	width: 30px;
     border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+span {
+    padding: 19px;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px rgb(61, 62, 68);
 }
 

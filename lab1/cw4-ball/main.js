@@ -1,17 +1,22 @@
 let holes = [];
-
-window.addEventListener('deviceorientation', onDeviceOrientationChange);
-
-document.querySelector('.start').addEventListener('click', onStartClick);
-document.querySelectorAll('.restart').addEventListener('click', onRestart);
-
-
-
+let speedX = 0;
+let speedY = 0;
 
 const ball =  {
     x: 0,
     y: 0
 }
+
+
+window.addEventListener('deviceorientation', onDeviceOrientationChange);
+
+document.querySelector('.start').addEventListener('click', onStartClick);
+// document.querySelectorAll('.restart').addEventListener('click', onRestart);
+
+
+
+
+
 
 function onStartClick() {
     let scoreCount = 0;
@@ -19,7 +24,7 @@ function onStartClick() {
     btn.classList.add('remove');
 
     makeHoles();
-    moveHoles();
+    moveBall();
 
     const score = document.createElement('span');
     score.classList.add('score');
@@ -48,35 +53,34 @@ function gameInit() {
 }
 
 function onDeviceOrientationChange(ev) {
-    console.log(ev.alpha, ev.beta, ev.gamma);
+    speedX = ev.gamma/60;
+    speedY = ev.beta/60;
 }
 
 
-function onRestart() {
-    window.onStartClick()
-}
+// function onRestart() {
+//     window.onStartClick()
+// }
 
 function makeHoles() {
-    for (let i = 5; i < window.innerWidth/100; i++) {
+    for (let i = 5; i < window.innerWidth/60; i++) {
         let hole = document.createElement('div');
         hole.classList.add('hole');
-        hole.style.left = 100*i+Math.random() * 70 - 95 + 'px';
-        hole.style.top = Math.random() * (window.innerHeight-95) + 'px';
-        holes.push(hole);
-        document.body.appendChild(hole);
-    }
+        let holeNumber = document.createElement('span');
+        holeNumber.innerHTML = i - 5;
+        hole.appendChild(holeNumber);
 
-    for (let i = 5; i < window.innerWidth/100; i++) {
-        let hole = document.createElement('div');
-        hole.classList.add('hole');
-        hole.style.left = 100 * i + Math.random() * 70 - 95 + 'px';
-        hole.style.top = Math.random() * (window.innerHeight) + window.innerHeight - 100 + 'px';
+        hole.style.left = 80 * i+Math.random() * 70 - 95 + 'px';
+        hole.style.top = Math.random() * (window.innerHeight-95) + 'px';
+
         holes.push(hole);
         document.body.appendChild(hole);
     }
 
 }
 
-function moveHoles() {
+
+
+function moveBall() {
 
 }
