@@ -33,13 +33,14 @@ function onDeviceOrientationChange(event) {
     speedY = event.beta;
     console.log(speedX);
     console.log(speedY);
-    if (( speedX < 180 && speedX  > -180 )) {
-        
-        ball.style.left = 230 - (speedX * 5) + 'px';        
+    if (( speedX + x < innerWidth && speedX  +x > 0 )) {
+        x += speedX;
+        ball.style.left = x + 'px';        
     }
         
-    if  (speedY < 100 && speedY > -100) {
-        ball.style.top = 160 - (speedY * 5) + 'px';       
+    if  (speedY < window.innerHeight && speedY > 0) {
+        y += speedY;
+        ball.style.top = y + 'px';       
     }
 }
 
@@ -48,16 +49,16 @@ function onDeviceOrientationChange(event) {
 // }
 
 function makeHoles() {
-    for (let i = 5; i < window.innerWidth/100; i++) {
+    for (let i = 1; i < window.innerWidth/100; i++) {
         let hole = document.createElement('div');
 
         hole.classList.add('hole');
         let holeNumber = document.createElement('span');
-        holeNumber.innerHTML = i - 5;
+        holeNumber.innerHTML = i - 1;
         holeNumber.id = holeNumber.innerHTML;
         hole.appendChild(holeNumber);
 
-        hole.style.left = 80 * i + Math.random() * 50 + 'px';
+        hole.style.left = 100 * i + Math.random() * 80 + 'px';
         hole.style.top = Math.random() * (window.innerHeight - 100) + 'px';
 
         holes.push(hole);
