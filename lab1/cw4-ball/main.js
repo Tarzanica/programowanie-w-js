@@ -24,14 +24,23 @@ function onStartClick() {
     document.body.appendChild(ball);
 
     makeHoles();
-    moveBall();
+    onDeviceOrientationChange(event);
 }
 
-function onDeviceOrientationChange(ev) {
-    speedX = ev.alpha; //gamma nie alfa
-    speedY = ev.beta;
+function onDeviceOrientationChange(event) {
+    let ball = document.querySelector('.ball');
+    speedX = event.alpha; //alpha nie 
+    speedY = event.beta;
     console.log(speedX);
     console.log(speedY);
+    if (( speedX < 180 && speedX  > -180 )) {
+        
+        ball.style.left = 230 - (speedX * 5) + 'px';        
+    }
+        
+    if  (speedY < 100 && speedY > -100) {
+        ball.style.top = 160 - (speedY * 5) + 'px';       
+    }
 }
 
 // function onRestart() {
@@ -45,6 +54,7 @@ function makeHoles() {
         hole.classList.add('hole');
         let holeNumber = document.createElement('span');
         holeNumber.innerHTML = i - 5;
+        holeNumber.id = holeNumber.innerHTML;
         hole.appendChild(holeNumber);
 
         hole.style.left = 80 * i + Math.random() * 50 + 'px';
@@ -56,19 +66,3 @@ function makeHoles() {
 
 }
 
- function moveBall() {
-    let ball = document.querySelector('.ball');
-//error cannot read property of null ??
-    
-    if ( speedX + x < window.innerWidth && speedX + x > 0 ) {
-        x += speedX;
-        console.log(x);
-        ball.style.left = x + 'px';
-    }
-        
-    if ( speedY + y < window.innerHeight && speedY + y > 0 ) {
-        y += speedY;
-        console.log(x);
-        ball.style.top = y + 'px';
-    }
- }
