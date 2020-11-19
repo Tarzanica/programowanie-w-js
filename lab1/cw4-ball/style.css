@@ -44,10 +44,10 @@ body {
 .hole {
     position: absolute;
     background-color:rgb(84, 93, 139);
-    border: 2ps solid blue;
+    border: 2px solid rgb(39, 39, 85);
 	height: 50px;
 	width: 50px;
-	border-radius: 50%;
+    border-radius: 50%;
 }
 .ball {
     position: absolute;
@@ -56,8 +56,9 @@ body {
 	height: 30px;
 	width: 30px;
     border-radius: 50%;
-    top: 200px;
     left: 200px;
+    top: 200px;
+
 }
 
 span {
