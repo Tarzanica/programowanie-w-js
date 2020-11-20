@@ -1,4 +1,16 @@
+// próba z canvas
+
+const canvas = document.querySelector('.canvas');
+const hole = canvas.getContext('2d');
+let scoreCount = 0;
 let holes = [];
+
+var hx =  Math.random() * canvas.width ;
+var hy =  Math.random() * canvas.height ;
+var radius = 25;
+var sAngle = 0;
+var eAngle = 2 * Math.PI;
+
 let speedX = 0;
 let speedY = 0;
 let x = 200;
@@ -6,13 +18,15 @@ let y = 200;
 
 window.addEventListener('deviceorientation', onDeviceOrientationChange);
 
+const restart = document.querySelector('.restart');
+
 document.querySelector('.start').addEventListener('click', onStartClick);
 // document.querySelectorAll('.restart').addEventListener('click', onRestart);
 
 function onStartClick() {
-    let scoreCount = 0;
     const btn = document.querySelector('.start');
     btn.classList.add('remove');
+    restart.classList.remove('remove');
 
     const score = document.createElement('span');
     score.classList.add('score');
@@ -25,7 +39,7 @@ function onStartClick() {
 
     makeHoles();
     onDeviceOrientationChange(event);
-    checkCollision();
+    checkForCollision();
 }
 
 function onDeviceOrientationChange(event) {
@@ -49,30 +63,41 @@ function onDeviceOrientationChange(event) {
 // }
 
 function makeHoles() {
-    for (let i = 1; i < window.innerWidth/100; i++) {
-        let hole = document.createElement('div');
-
-        hole.classList.add('hole');
-        let holeNumber = document.createElement('span');
-        holeNumber.innerHTML = i - 1;
-        holeNumber.id = holeNumber.innerHTML;
-        hole.appendChild(holeNumber);
-
-        hole.style.left = 100 * i + Math.random() * 80 + 'px';
-        hole.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+    for (let i = 1; i < canvas.width/100; i++) {
+        hole.beginPath();
+        hole.arc(
+            hx,
+            hy,
+            radius,
+            sAngle,
+            eAngle,
+        );
+        hole.fillStyle = 'rgb(84, 93, 139)';
+        hole.font = '20px, Arial';
+        hole.textAlign = 'center';
+        hole.strokeText = i;
+        hole.fill();
+        hole.stroke();
+        hole.closePath();
 
         holes.push(hole);
-        document.body.appendChild(hole);
     }
-
 }
 
-function checkCollision() {
-    for (let i = 0; i < holes.length; i++) {
-        let currentHole = this.holes[i];
+function checkForCollision() {
+    for (let i = 0; i < holes.length + 1; i++) {
+        let currentHole = this.holes[i];         
         let ball = document.querySelector('.ball');
         
-        4
+        currentHole = {radius: radius, x: hx, y: hy};
+        ball = {radius: 15, x: x, y: y };
 
+        var dx = currentHole.x - ball.x;
+        var dy = currentHole.y - ball.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < currentHole.radius + ball.radius) {
+            scoreCount++;
+        }
     }
 }

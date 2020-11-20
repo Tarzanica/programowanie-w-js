@@ -4,6 +4,14 @@ body {
     overflow: hidden;
 }
 
+.canvas {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1370px;
+    height: 670px;
+    border: 3px solid grey;
+}
+
 .start {
     position: fixed;
     padding: 30px;
@@ -21,6 +29,7 @@ body {
 
 .score {
     position: absolute;
+    z-index: 999;
     font-size: 30px;
     background-color: cadetblue;
     color: white;
@@ -31,6 +40,7 @@ body {
 }
 
 .restart {
+    position: fixed;
     top: 5%;
     left: 3%;
     font-size: 15px;
