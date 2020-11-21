@@ -73,9 +73,6 @@ function makeHoles() {
             eAngle,
         );
         hole.fillStyle = 'rgb(84, 93, 139)';
-        hole.font = '20px, Arial';
-        hole.textAlign = 'center';
-        hole.strokeText = i;
         hole.fill();
         hole.stroke();
         hole.closePath();
@@ -83,10 +80,9 @@ function makeHoles() {
         holes.push(hole);
     }
 }
-
 function checkForCollision() {
-    for (let i = 0; i < holes.length + 1; i++) {
-        let currentHole = this.holes[i];         
+    for (let i = 0; i < holes.length; i++) {
+        let currentHole = holes[i];         
         let ball = document.querySelector('.ball');
         
         currentHole = {radius: radius, x: hx, y: hy};

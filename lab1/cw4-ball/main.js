@@ -71,8 +71,8 @@ function checkCollision() {
     for (let i = 0; i < holes.length; i++) {
         let currentHole = this.holes[i];
         let ball = document.querySelector('.ball');
-        
-        4
+        console.log(ball);
+        console.log(currentHole);
 
     }
 }
