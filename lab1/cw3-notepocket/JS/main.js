@@ -9,48 +9,19 @@ document.querySelector('#newNoteBtn').addEventListener('click', onNewNote);
 const notes = [];
 
 if (notes.length == 0) {    
-    document.body.style.backgroundImage = "url('images/no-notes.png')";
+    document.body.style.backgroundImage = 'url(\'images/no-notes.png\')';
 }
 
-// change textarea background color
-// const colorSelected = document.querySelectorAll('.select-bgcolor option');
-// console.log(colorSelected);
-
-// for (let i = 0; i < colorSelected.length; i++) {
-//     colorSelected[i].addEventListener('click', onChangeColor);    
-// }
-
+// // change textarea background color
 // function onChangeColor() {
-//     const content = document.querySelector('#noteContent');
-//     console.log(content);
-//     switch (colorSelected.value) {
-//         case "red":
-//             content.style.background = "red";
-//             break;
-//         case "pink":
-//             content.style.background = "pink";
-//             break;
-//         case "orange":
-//             content.style.background = "orange";
-//             break;
-//         case "yellow":
-//             content.style.background = "yellow";
-//             break;
-//         case "green":
-//             content.style.background = "green";
-//             break;
-//         case "blue":
-//             content.style.background = "blue";
-//             break;
-//         case "grey":
-//             content.style.background = "grey";
-//             break;
-//         case "white":
-//             content.style.background = "white";
-//         default:
-//             break;
-//     }
+//     const selected = document.querySelectorAll('#selected');
+//     let colorSelected = selected.options[selected.colorSelectedIndex].value;
+//     let content = document.querySelector('.note');
+//     content.style.borderBottomColor = colorSelected;
 // }
+
+
+// document.querySelector('#selected').addEventListener('click', onChangeColor);   
 
 function removeNote(e) {
     let noteToRemove = e.target.parentNode;
@@ -61,13 +32,14 @@ function onNewNote() {
     document.body.style.backgroundImage = 'initial';
     const title = document.querySelector('#noteTitle').value;
     const content = document.querySelector('#noteContent').value;
+    const color = document.querySelector('#selected').value;
     const note = {
         title: title,
         content: content,
-        colour: '#ff1455',
+        colour: color,
         pinned: false,
-        createDate: new Date()
-    }
+        createDate: new Date(),
+    };
 
     notes.push(note);
     console.log(note);
@@ -104,6 +76,7 @@ function onNewNote() {
         htmlButton.classList.add('removeBtn');
         // htmlPinnedBtn.classList.add('fas fa-thumbtack');
 
+        htmlNote.style.borderBottomColor = note.colour;
         // htmlPinnedBtn.addEventListener('click', pinNote);
         htmlButton.addEventListener('click', removeNote);
         htmlNote.appendChild(htmlTitle);

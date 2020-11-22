@@ -80,7 +80,7 @@ function makeHoles() {
         holes.push(hole);
     }
 }
-function checkForCollision() {
+function checkForCollision() {  
     for (let i = 0; i < holes.length; i++) {
         let currentHole = holes[i];         
         let ball = document.querySelector('.ball');
