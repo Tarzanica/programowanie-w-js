@@ -156,7 +156,7 @@ main {
     background: #fff;
     border-radius: 2%;
     box-shadow: 0 0.9rem 1.2rem rgba(0,0,0, 0.1);
-    border-bottom: 5px solid pink ;
+    border-bottom: 5px solid red;
 }
 
 .note p {
