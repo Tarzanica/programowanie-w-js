@@ -1,0 +1,13 @@
+html { 
+    background-image: url(img/torspomedia-zvW3mkPDo14-unsplash.jpg);
+    overflow: hidden;
+}
+
+
+p {
+    font-size: 30px;
+    color: grey;
+    top: 150px;
+    width: 100%;
+
+}
