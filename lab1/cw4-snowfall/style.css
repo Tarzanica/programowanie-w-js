@@ -5,8 +5,10 @@ html {
 
 
 p {
-    font-size: 30px;
-    color: grey;
-    top: 150px;
-    width: 100%;
+    position: absolute;
+    font-size: 40px;
+    color: rgb(198, 218, 238);
+    top: 150px;   
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

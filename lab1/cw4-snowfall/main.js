@@ -8,7 +8,7 @@ canvas.width = w;
 canvas.height = h;
 
 function random(min, max) {
-    min = Math.ceil(min);
+    min = Math.floor(min);
     max = Math.floor(max);
     return min = Math.random() * (max - min);
 };
@@ -16,7 +16,7 @@ function random(min, max) {
 function createSnowflakes() {    
     for (let i = 0; i < numberOfFlakes; i++) {
         flakes.push({
-            x: Math.random() * w,
+            x: Math.random() * w ,
             y: Math.random() * h,
             speedX: random(-5, 5),
             speedY: random(0, 10),
@@ -44,12 +44,12 @@ function drawSnowflakes() {
 
 function moveSnowflakes() {
     for (let i = 0; i < flakes.length; i++) {
-        flakes[i].x += flakes[i].speedX - 10;
+        flakes[i].x += flakes[i].speedX - 4;
         flakes[i].y += flakes[i].speedY ;  
         
         if (flakes[i].y > h || flakes[i].x > w || flakes[i].x < 0) {
-            flakes[i].y = - 100;
-            flakes[i].x = Math.random() * w + 100;        
+            flakes[i].y = 0;
+            flakes[i].x = Math.random() * w ;        
         }
     }  
 };

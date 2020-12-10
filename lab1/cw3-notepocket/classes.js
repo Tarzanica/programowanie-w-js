@@ -1,5 +1,5 @@
 class Note {
-    constructor (title, content, color = 'white', pinned = false) {
+    constructor (title, content, color, pinned = false) {
         this.title = title;
         this.content = content;
         this.color = color;
@@ -100,7 +100,3 @@ class Db {
 
     }
 }
-
-
-
-
