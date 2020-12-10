@@ -1,5 +1,5 @@
 html { 
-    background-image: url(img/torspomedia-zvW3mkPDo14-unsplash.jpg);
+    background: rgb(161, 176, 190);
     overflow: hidden;
 }
 
@@ -9,5 +9,4 @@ p {
     color: grey;
     top: 150px;
     width: 100%;
-
 }
