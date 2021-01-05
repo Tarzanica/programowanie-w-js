@@ -1,27 +1,12 @@
 const lsNotesKey = 'notes';
-
-document.querySelector('#newNoteBtn').addEventListener('click', onNewNote);
-
 // 4. get value from html forms
 document.querySelector('#newNoteBtn').addEventListener('click', onNewNote);
-
-
 const notes = [];
-
+const notesContainer = document.querySelector('main');
 if (notes.length == 0) {    
     document.body.style.backgroundImage = 'url(\'images/no-notes.png\')';
 }
 
-// // change textarea background color
-// function onChangeColor() {
-//     const selected = document.querySelectorAll('#selected');
-//     let colorSelected = selected.options[selected.colorSelectedIndex].value;
-//     let content = document.querySelector('.note');
-//     content.style.borderBottomColor = colorSelected;
-// }
-
-
-// document.querySelector('#selected').addEventListener('click', onChangeColor);   
 
 function removeNote(e) {
     let noteToRemove = e.target.parentNode;
@@ -33,6 +18,7 @@ function onNewNote() {
     const title = document.querySelector('#noteTitle').value;
     const content = document.querySelector('#noteContent').value;
     const color = document.querySelector('#selected').value;
+    
     const note = {
         title: title,
         content: content,
@@ -40,10 +26,9 @@ function onNewNote() {
         pinned: false,
         createDate: new Date(),
     };
-
     notes.push(note);
-    console.log(note);
-    // json 
+
+    notesContainer.innerHTML = '';
 
     localStorage.setItem(lsNotesKey, JSON.stringify(notes));
 
@@ -54,10 +39,7 @@ function onNewNote() {
         note.createDate = new Date(note.createDate);
         return note;
     });
-    // 3. html structure modify
-
-    const notesContainer = document.querySelector('main');
-    notesContainer.innerHTML = '';
+   
 
     for (const note of convertedNotes) {
         
