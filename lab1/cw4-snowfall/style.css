@@ -1,5 +1,5 @@
 html { 
-    background: rgb(161, 176, 190);
+    background: url('img/ming-lv-t0JcNLalA7k-unsplash.jpg');
     overflow: hidden;
 }
 
@@ -7,8 +7,12 @@ html {
 p {
     position: absolute;
     font-size: 40px;
-    color: rgb(198, 218, 238);
+    color: rgb(244, 249, 255);
     top: 150px;   
     left: 50%;
     transform: translate(-50%, -50%);
+}
+img{
+    position: absolute;
+    width: 100px;
 }
