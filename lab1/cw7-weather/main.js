@@ -1,7 +1,7 @@
 let cityName = document.querySelector('#city').value;
 const apiKey = '57cc083a05fa6a2008dc652336e25912';
 const openWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=Cracow&appid=${apiKey}`
-const weather = fetch(openWeatherUrl);
+const weather = fetch(openWeatherUrl).then((d) => d.json());
 console.log(weather);
 
 weather

@@ -72,7 +72,6 @@ function moveSnowflakes() {
 	}  
 }
 
-
 function updatePosition(evt) {
 	mouseXPosition = evt.clientX;
 	mouseYPosition = evt.clientY;
@@ -128,7 +127,6 @@ function calculateDistanceToMouse(flake){
 	return Math.sqrt(dirX*dirX+dirY*dirY);
 }
 
-
 function animateSnowflakes() {  
 	drawSnowflakes();
 	moveSnowflakes();
@@ -136,20 +134,6 @@ function animateSnowflakes() {
 }
 createSnowflakes();
 animateSnowflakes();
-
-
-// function calculateYDir(flake) { 
-// 	let dir = flake.y - mouseYPosition;
-// 	if (dir > 0){
-// 		return 0.2;
-// 	}
-// 	else if(dir < 0){
-// 		return -0.2;
-// 	}
-// 	else{
-// 		return random(-0.2,0.2);
-// 	}
-// }
 
 
 
