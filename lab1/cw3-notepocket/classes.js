@@ -7,6 +7,7 @@ class Note {
 		this.createDate = new Date();
 		this.id = Date.now();
 	}
+
 }
 
 class Notes {
@@ -16,7 +17,7 @@ class Notes {
 		this.db = new Db();
 		this.notesUI = new NotesUI(containerSelector);
 	}
-
+	
 	addNote(note) {
 		this.notes.push(note);
 		this.db.saveNotes(this.notes);
@@ -26,8 +27,8 @@ class Notes {
 	removeNote(id) {
 		this.notes = this.notes.filter(el => el.id !== id);
 		this.db.saveNotes(this.notes);
-        this.notesUI.removeNote(id);
-        
+		this.notesUI.removeNote(id); 
+		this.notes.splice(id,1);  
 	}
 	getNote(id) {
 		return this.notes.find(el => el.id === id);
@@ -41,6 +42,7 @@ class NotesUI {
 	constructor(containerSelector = 'main') {
 		this.notes = new Notes();
 		this.notesContainer = document.querySelector(containerSelector);
+		this.pinnedContainer = document.querySelector('pinned-notes');
 	}
 
 	addNote(note) {
@@ -54,6 +56,8 @@ class NotesUI {
 		const htmlContent = document.createElement('p');
 		const htmlTime = document.createElement('time');
 		const htmlButton = document.createElement('button');
+		const htmlPinnedBtn = document.createElement ('input');
+		const htmlLabel = document.createElement('label');
 
 		htmlNote.classList.add('note');
 		htmlTitle.innerHTML = note.title;
@@ -61,12 +65,34 @@ class NotesUI {
 		htmlTime.innerHTML = note.createDate.toLocaleString();
 		htmlButton.innerHTML = 'Remove';
 		htmlButton.classList.add('removeBtn');
+		htmlPinnedBtn.type = 'checkbox';
+		htmlPinnedBtn.id = 'check';
+		htmlLabel.htmlFor = 'check';
 
+		htmlNote.style.borderBottomColor = note.colour;
+		htmlPinnedBtn.addEventListener('click', function() {
+			if (htmlNote.parentNode == this.pinnedContainer) {
+				this.notesContainer.appendChild(htmlNote);
+			}else if(htmlNote.parentNode == this.notesContainer){
+				this.pinnedContainer.appendChild(htmlNote);
+			}			
+		});
         
 		htmlNote.appendChild(htmlTitle);
 		htmlNote.appendChild(htmlContent);
 		htmlNote.appendChild(htmlTime);
 		htmlNote.appendChild(htmlButton);
+		htmlNote.appendChild(htmlPinnedBtn);
+		htmlNote.appendChild(htmlLabel);
+
+		if(note.pinned == false){
+			this.notesContainer.appendChild(htmlNote);
+			htmlPinnedBtn.checked = false;
+		}
+		else{
+			this.pinnedContainer.appendChild(htmlNote);
+			htmlPinnedBtn.checked = true;
+		}
 	}
 	removeNote(id) {
 		const note = this.getNote(id);

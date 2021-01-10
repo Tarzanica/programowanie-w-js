@@ -87,17 +87,22 @@ button {
     display: flex;
 }
 
-.fa-thumbtack {
-    margin-left: 20px;
-    color: grey;
-    font-size: 25px;
-    align-self: center;
+input[type=checkbox] {
+    width: 30px;
+    height: 30px;
 }
 
-.fa-thumbtack:hover {
-    color: rgb(48, 100, 98);
-    transition: 0,3s;
+input[type=checkbox] + label {
+    background-image: url(images/icons8-pin-26.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    width: 26px;
+    height: 26px;
+    display:inline-block;
+    margin-top: 5px;
+
 }
+
 
 
 .removeBtn {
@@ -142,6 +147,19 @@ option {
     background: white;
 }
 
+.main-container{
+    display: flex;
+}
+
+.note-container{
+    width: min-content;
+}
+
+.pinned-notes{
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
 
 main {
 

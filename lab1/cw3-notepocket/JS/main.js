@@ -1,75 +1,89 @@
 const lsNotesKey = 'notes';
-// 4. get value from html forms
 document.querySelector('#newNoteBtn').addEventListener('click', onNewNote);
 const notes = [];
 const notesContainer = document.querySelector('main');
 if (notes.length == 0) {    
-    document.body.style.backgroundImage = 'url(\'images/no-notes.png\')';
+	document.body.style.backgroundImage = 'url(\'images/no-notes.png\')';
 }
-
+const pinnedContainer = document.querySelector('.pinned-notes');
 
 function removeNote(e) {
-    let noteToRemove = e.target.parentNode;
-    noteToRemove.parentNode.removeChild(noteToRemove);
+	let noteToRemove = e.target.parentNode;
+	noteToRemove.parentNode.removeChild(noteToRemove);
+	notes.splice(noteToRemove, 1);
 }
 
 function onNewNote() {
-    document.body.style.backgroundImage = 'initial';
-    const title = document.querySelector('#noteTitle').value;
-    const content = document.querySelector('#noteContent').value;
-    const color = document.querySelector('#selected').value;
-    
-    const note = {
-        title: title,
-        content: content,
-        colour: color,
-        pinned: false,
-        createDate: new Date(),
-    };
-    notes.push(note);
+	document.body.style.backgroundImage = 'initial';
+	const title = document.querySelector('#noteTitle').value;
+	const content = document.querySelector('#noteContent').value;
+	const color = document.querySelector('#selected').value;
+	let pinned = false;
+	if((document.querySelector('.pinnedBtn').checked == true))pinned = true;
+	const note = {
+		title: title,
+		content: content,
+		colour: color,
+		pinned: pinned,
+		createDate: new Date(),
+	};
+		
+	notes.push(note);
+	notesContainer.innerHTML = '';
 
-    notesContainer.innerHTML = '';
-
-    localStorage.setItem(lsNotesKey, JSON.stringify(notes));
-
-    // 2. read the notes from local storage 
-    const notesFromLocalStorage = JSON.parse(localStorage.getItem(lsNotesKey));
-
-    const convertedNotes = notesFromLocalStorage.map( note => {
-        note.createDate = new Date(note.createDate);
-        return note;
-    });
+	localStorage.setItem(lsNotesKey, JSON.stringify(notes));
+	const notesFromLocalStorage = JSON.parse(localStorage.getItem(lsNotesKey));
+	const convertedNotes = notesFromLocalStorage.map( note => {
+		note.createDate = new Date(note.createDate);
+		return note;
+	});
    
-
-    for (const note of convertedNotes) {
+	for (const note of convertedNotes) {
         
-        const htmlNote = document.createElement('section');
-        const htmlTitle = document.createElement('h3');
-        const htmlContent = document.createElement('p');
-        const htmlTime = document.createElement('time');
-        const htmlButton = document.createElement('button');
-        // const htmlPinnedBtn = document.createElement ('i');
+		const htmlNote = document.createElement('section');
+		const htmlTitle = document.createElement('h3');
+		const htmlContent = document.createElement('p');
+		const htmlTime = document.createElement('time');
+		const htmlButton = document.createElement('button');
+		const htmlPinnedBtn = document.createElement ('input');
+		const htmlLabel = document.createElement('label');
 
-        htmlNote.classList.add('note');
-        htmlTitle.innerHTML = note.title;
-        htmlContent.innerHTML = note.content;
-        htmlTime.innerHTML = note.createDate.toLocaleString();
-        htmlButton.innerHTML = 'Remove';
-        htmlButton.classList.add('removeBtn');
-        // htmlPinnedBtn.classList.add('fas fa-thumbtack');
+		htmlNote.classList.add('note');
+		htmlTitle.innerHTML = note.title;
+		htmlContent.innerHTML = note.content;
+		htmlTime.innerHTML = note.createDate.toLocaleString();
+		htmlButton.innerHTML = 'Remove';
+		htmlButton.classList.add('removeBtn');
+		htmlPinnedBtn.type = 'checkbox';
+		htmlPinnedBtn.id = 'check';
+		htmlLabel.htmlFor = 'check';
 
-        htmlNote.style.borderBottomColor = note.colour;
-        // htmlPinnedBtn.addEventListener('click', pinNote);
-        htmlButton.addEventListener('click', removeNote);
-        htmlNote.appendChild(htmlTitle);
-        htmlNote.appendChild(htmlContent);
-        htmlNote.appendChild(htmlTime);
-        htmlNote.appendChild(htmlButton);
-        // htmlNote.appendChild(htmlPinnedBtn);
-        notesContainer.appendChild(htmlNote);
+		htmlNote.style.borderBottomColor = note.colour;
+		htmlPinnedBtn.addEventListener('click', function() {
+			if (htmlNote.parentNode == pinnedContainer) {
+				notesContainer.appendChild(htmlNote);
+			}else if(htmlNote.parentNode == notesContainer){
+				pinnedContainer.appendChild(htmlNote);
+			}			
+		});
+		htmlButton.addEventListener('click', removeNote);
+		htmlNote.appendChild(htmlTitle);
+		htmlNote.appendChild(htmlContent);
+		htmlNote.appendChild(htmlTime);
+		htmlNote.appendChild(htmlButton);
+		htmlNote.appendChild(htmlPinnedBtn);
+		htmlNote.appendChild(htmlLabel);
+		if(note.pinned == false){
+			notesContainer.appendChild(htmlNote);
+			htmlPinnedBtn.checked = false;
+		}
+		else{
+			pinnedContainer.appendChild(htmlNote);
+			htmlPinnedBtn.checked = true;
+		}
+	}
 
-    }
-
-    document.querySelector('#noteTitle').value = '';
-    document.querySelector('#noteContent').value = '';
+	document.querySelector('#noteTitle').value = '';
+	document.querySelector('#noteContent').value = '';
+	
 }
