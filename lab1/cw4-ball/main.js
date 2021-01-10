@@ -44,9 +44,6 @@ function onDeviceOrientationChange(event) {
 	}
 }
 
-// function onRestart() {
-//     window.onStartClick()
-// }
 
 function makeHoles() {
 	for (let i = 1; i < window.innerWidth/100; i++) {

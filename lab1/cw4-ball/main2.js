@@ -1,15 +1,13 @@
 // próba z canvas
-
-const canvas = document.querySelector('.canvas');
-const hole = canvas.getContext('2d');
+let canvas = document.querySelector('.canvas');
+let hole = canvas.getContext('2d');
+let ball = document.querySelector('.ball');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 let scoreCount = 0;
 let holes = [];
 
-var hx =  Math.random() * canvas.width ;
-var hy =  Math.random() * canvas.height ;
 var radius = 25;
-var sAngle = 0;
-var eAngle = 2 * Math.PI;
 
 let speedX = 0;
 let speedY = 0;
@@ -37,40 +35,34 @@ function onStartClick() {
 	ball.classList.add('ball');
 	document.body.appendChild(ball);
 
+
 	makeHoles();
-	onDeviceOrientationChange(event);
+	moveBall();
 	checkForCollision();
 }
 
-function onDeviceOrientationChange(event) {
-	let ball = document.querySelector('.ball');
-	speedX = event.alpha/60; //alpha nie 
-	speedY = event.beta/60;
-
-	if ((innerWidth > speedX  + x > 0 )) {
-		x += speedX;
-		ball.style.left = x + 'px';        
-	}
-        
-	if  (window.innerHeight > speedY + y > 0) {
-		y += speedY;
-		ball.style.top = y + 'px';       
-	}
+function onDeviceOrientationChange(e) {
+	speedX = e.gamma/45; //alpha nie 
+	speedY = e.beta/45;
 }
+
 
 // function onRestart() {
 //     window.onStartClick()
 // }
 
 function makeHoles() {
-	for (let i = 1; i < canvas.width/100; i++) {
+	for (let i = 1; i < canvas.width/80; i++) {	
+		let hx =  Math.random() * canvas.width ;
+		let hy =  Math.random() * canvas.height ;
 		hole.beginPath();
 		hole.arc(
 			hx,
 			hy,
 			radius,
-			sAngle,
-			eAngle,
+			0,
+			2 * Math.PI,
+			false
 		);
 		hole.fillStyle = 'rgb(84, 93, 139)';
 		hole.fill();
@@ -80,6 +72,18 @@ function makeHoles() {
 		holes.push(hole);
 	}
 }
+
+function moveBall(){
+	if(x+speedX<window.innerWidth-50 && x+speedX>0){ 
+		x+=speedX;
+		ball.style.left=x+'px';        
+	}
+	if(y+speedY<window.innerHeight-50 && y+speedY>0){
+		y+=speedY;
+		ball.style.top=y+'px';        
+	}
+}
+
 function checkForCollision() {  
 	for (let i = 0; i < holes.length; i++) {
 		let currentHole = holes[i];         
@@ -97,3 +101,5 @@ function checkForCollision() {
 		}
 	}
 }
+
+

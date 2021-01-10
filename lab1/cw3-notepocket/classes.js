@@ -7,7 +7,6 @@ class Note {
 		this.createDate = new Date();
 		this.id = Date.now();
 	}
-
 }
 
 class Notes {

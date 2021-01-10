@@ -1,6 +1,7 @@
 const lsNotesKey = 'notes';
 document.querySelector('#newNoteBtn').addEventListener('click', onNewNote);
 const notes = [];
+let convertedNotes;
 const notesContainer = document.querySelector('main');
 if (notes.length == 0) {    
 	document.body.style.backgroundImage = 'url(\'images/no-notes.png\')';
@@ -11,6 +12,8 @@ function removeNote(e) {
 	let noteToRemove = e.target.parentNode;
 	noteToRemove.parentNode.removeChild(noteToRemove);
 	notes.splice(noteToRemove, 1);
+	createlocalStorage();
+	createNote();
 }
 
 function onNewNote() {
@@ -19,7 +22,7 @@ function onNewNote() {
 	const content = document.querySelector('#noteContent').value;
 	const color = document.querySelector('#selected').value;
 	let pinned = false;
-	if((document.querySelector('.pinnedBtn').checked == true))pinned = true;
+	if((document.querySelector('.pinnedBtn').checked == true)) pinned = true;
 	const note = {
 		title: title,
 		content: content,
@@ -30,14 +33,26 @@ function onNewNote() {
 		
 	notes.push(note);
 	notesContainer.innerHTML = '';
-
+	createlocalStorage();
+	createNote();
+}
+function createlocalStorage(){
 	localStorage.setItem(lsNotesKey, JSON.stringify(notes));
 	const notesFromLocalStorage = JSON.parse(localStorage.getItem(lsNotesKey));
-	const convertedNotes = notesFromLocalStorage.map( note => {
+	
+	convertedNotes = notesFromLocalStorage.map( note => {
 		note.createDate = new Date(note.createDate);
 		return note;
 	});
-   
+}
+	
+function createNote(){
+	let notes = document.querySelectorAll('.note');
+    
+	for(let i = 0; i < notes.length; i++){
+		notes[i].parentNode.removeChild(notes[i]);
+	}
+	
 	for (const note of convertedNotes) {
         
 		const htmlNote = document.createElement('section');
@@ -73,6 +88,7 @@ function onNewNote() {
 		htmlNote.appendChild(htmlButton);
 		htmlNote.appendChild(htmlPinnedBtn);
 		htmlNote.appendChild(htmlLabel);
+
 		if(note.pinned == false){
 			notesContainer.appendChild(htmlNote);
 			htmlPinnedBtn.checked = false;
@@ -87,3 +103,5 @@ function onNewNote() {
 	document.querySelector('#noteContent').value = '';
 	
 }
+
+	
