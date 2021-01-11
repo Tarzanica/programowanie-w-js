@@ -6,6 +6,7 @@ const weather = {};
 let weathers = [];
 addBtn.addEventListener('click', function(){
 	getWeatherData();
+
 });
 
 
@@ -15,9 +16,9 @@ function getWeatherData(){
 		.then(data => {
 			weather.city = data['name'];
 			weather.desc = data['weather'][0]['description'];
-			weather.temp = data['main']['temp'];
+			weather.temp = Math.round(data['main']['temp']);
 			weather.image = data['weather'][0]['icon'];
-			weather.humidity = data['main']['humidity'];
+			weather.wind = data['wind']['speed'];
 			weather.pressure = data['main']['pressure'];		
 			weathers.push(weather);	
 		})
@@ -36,7 +37,7 @@ function createWeatherNote() {
 		const htmlTemp = document.createElement('p');
 		const htmlImg = document.createElement('div');
 		const htmlDesc = document.createElement('p');		
- 		const htmlHumidity = document.createElement('p');
+ 		const htmlWind = document.createElement('p');
  		const htmlPressure = document.createElement('p');
 
 		htmlWeather.classList.add('weather-container');
@@ -44,26 +45,26 @@ function createWeatherNote() {
 		htmlImg.classList.add('weather-img');
 		htmlDesc.classList.add('desc');
 		htmlTemp.classList.add('temp');
-		htmlHumidity.classList.add('humidity');
+		htmlWind.classList.add('wind');
 		htmlPressure.classList.add('pressure');
 
 		htmlImg.innerHTML = `<img src="http://openweathermap.org/img/wn/${weather.image}@2x.png"/>`;
 		htmlCity.innerHTML = weather.city;
 		htmlDesc.innerHTML = weather.desc;
 		htmlTemp.innerHTML = weather.temp + '°';
-		htmlHumidity.innerHTML = 'Humidity' + weather.humidity + 'hPa';
-		htmlPressure.innerHTML = 'Pressure' + weather.pressure + 'hPa';
+		htmlWind.innerHTML = 'WIND <br><br>' + weather.wind + ' m/s';
+		htmlPressure.innerHTML = 'PRESSURE <br><br>' + weather.pressure + ' hPa';
 	
 		main.appendChild(htmlWeather);
 		htmlWeather.appendChild(htmlCity);
 		htmlWeather.appendChild(htmlTemp);
 		htmlWeather.appendChild(htmlImg);
 		htmlWeather.appendChild(htmlDesc);
-		htmlWeather.appendChild(htmlHumidity);
+		htmlWeather.appendChild(htmlWind);
 		htmlWeather.appendChild(htmlPressure);
 	}
 
-		
+	input.value = '';
 }
 
  
