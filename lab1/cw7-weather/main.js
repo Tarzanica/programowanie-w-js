@@ -1,15 +1,14 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-const localStorageWeatherKey = 'weatherApi';
+const lsWeatherKey = 'weatherApi';
 const main = document.querySelector('main');
 let addBtn = document.querySelector('.newWeatherForecast');
 let input = document.querySelector('.city');
 const weather = {};
 let forecasts = [];
+getDataFromLocalStorage();
 addBtn.addEventListener('click', function(){
-	getWeatherData();
-
+	getWeatherData();	
 });
-
 
 function getWeatherData(){
 	fetch('http://api.openweathermap.org/data/2.5/weather?q='+input.value+'&units=metric&appid=57cc083a05fa6a2008dc652336e25912')
@@ -22,21 +21,24 @@ function getWeatherData(){
 			weather.wind = data['wind']['speed'];
 			weather.pressure = data['main']['pressure'];		
 			forecasts.push(weather);	
-			localStorage.setItem(localStorageWeatherKey, JSON.stringify(forecasts));
+			localStorage.setItem(lsWeatherKey, JSON.stringify(forecasts));
 		})
 		.then(function(){
 			createWeatherNote();
-		});
+		})
+		.catch(err => console.log(err));
 }
 
-
-
-function createWeatherNote() {
-	const forecastsFromStorage = JSON.parse(localStorage.getItem(localStorageWeatherKey));
+function getDataFromLocalStorage(){
+	const forecastsFromStorage = JSON.parse(localStorage.getItem(lsWeatherKey));
 	forecasts = forecastsFromStorage.map(weather => {
 		weather.createDate = new Date(weather.createDate);
 		return weather;
 	});
+}
+
+function createWeatherNote() {
+
 
 	main.innerHTML = '';
 
