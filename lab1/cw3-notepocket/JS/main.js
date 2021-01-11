@@ -12,8 +12,7 @@ function removeNote(e) {
 	let noteToRemove = e.target.parentNode;
 	noteToRemove.parentNode.removeChild(noteToRemove);
 	notes.splice(noteToRemove, 1);
-	createlocalStorage();
-	createNote();
+
 }
 
 function onNewNote() {
@@ -32,12 +31,13 @@ function onNewNote() {
 	};
 		
 	notes.push(note);
+	localStorage.setItem(lsNotesKey, JSON.stringify(notes));
 	notesContainer.innerHTML = '';
 	createlocalStorage();
 	createNote();
 }
 function createlocalStorage(){
-	localStorage.setItem(lsNotesKey, JSON.stringify(notes));
+
 	const notesFromLocalStorage = JSON.parse(localStorage.getItem(lsNotesKey));
 	
 	convertedNotes = notesFromLocalStorage.map( note => {
