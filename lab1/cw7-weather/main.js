@@ -1,94 +1,69 @@
-const apiKey = '57cc083a05fa6a2008dc652336e25912';
-const openWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=Cracow&appid=${apiKey}`;
-const weather = fetch(openWeatherUrl).then((d) => d.json());
-console.log(weather);
+/* eslint-disable no-mixed-spaces-and-tabs */
+const main = document.querySelector('main');
+let addBtn = document.querySelector('.newWeatherForecast');
+let input = document.querySelector('.city');
+const weather = {};
+let weathers = [];
+addBtn.addEventListener('click', function(){
+	getWeatherData();
+});
 
 
-class Weather {
-	constructor (city, content, temperature, pressure, humidity) {
-		this.city = city;
-		this.content = content;
-		this.temperature = temperature;
-		this.pressure = pressure;
-		this.humidity = humidity;
-	}
+function getWeatherData(){
+	fetch('http://api.openweathermap.org/data/2.5/weather?q='+input.value+'&units=metric&appid=57cc083a05fa6a2008dc652336e25912')
+		.then((response) => response.json())
+		.then(data => {
+			weather.city = data['name'];
+			weather.desc = data['weather'][0]['description'];
+			weather.temp = data['main']['temp'];
+			weather.image = data['weather'][0]['icon'];
+			weather.humidity = data['main']['humidity'];
+			weather.pressure = data['main']['pressure'];		
+			weathers.push(weather);	
+		})
+		.then(function(){
+			createWeatherNote();
+		});
 }
 
-class WeatherForeCast {
-	constructor (containerSelector) {
-		this.weather = new Weather();
-		this.forecasts = [];
-		this.db = new Db();
-		this.forecastUI = new ForecastUI(containerSelector);
-	}
 
-	addWeather(weather) {
-		this.forecasts.push(weather);
-		this.db.saveWeather(this.forecasts);
-		this.forecastUI.addWeather(weather);
-		this.forecastUI.clearCity(weather);
-	}
 
-	getWeather(id) {
-		return this.forecasts.find(el => el.id === id);
-	} 
-	getForecasts() {
-		return [...this.forecasts];
-	}
-}
+function createWeatherNote() {
 
-class ForecastUI {
-	constructor(containerSelector = 'main') {
-		this.forecasts = new Weather();
-		this.forecastContainer = document.querySelector(containerSelector);
-	}
+	for (const weather of weathers){
+		const htmlWeather = document.createElement('div');
+		const htmlCity = document.createElement('h1');
+		const htmlTemp = document.createElement('p');
+		const htmlImg = document.createElement('div');
+		const htmlDesc = document.createElement('p');		
+ 		const htmlHumidity = document.createElement('p');
+ 		const htmlPressure = document.createElement('p');
 
-	addWeather(weather) {
-		const htmlWeather = this.createWeather(weather);
-		const container = this.getForecastContainer();
-		container.appendChild(htmlWeather);
-	}
-	createWeather(weather) {
-		const htmlWeather = document.createElement('section');
-		const htmlCity = document.createElement('h3');
-		const htmlTemperature = document.createElement('p');
-		const htmlPressure = document.createElement('p');
-		const htmlHumidity = document.createElement('p');
+		htmlWeather.classList.add('weather-container');
+		htmlCity.classList.add('city');
+		htmlImg.classList.add('weather-img');
+		htmlDesc.classList.add('desc');
+		htmlTemp.classList.add('temp');
+		htmlHumidity.classList.add('humidity');
+		htmlPressure.classList.add('pressure');
 
-		htmlWeather.classList.add('weather');
+		htmlImg.innerHTML = `<img src="http://openweathermap.org/img/wn/${weather.image}@2x.png"/>`;
 		htmlCity.innerHTML = weather.city;
-		htmlTemperature.innerHTML = weather.temperature;
-		htmlPressure.innerHTML = 'Ciśnienie' + weather.pressure;
-		htmlHumidity.innerHTML = 'Wilgotność' + weather.humidity;
-        
+		htmlDesc.innerHTML = weather.desc;
+		htmlTemp.innerHTML = weather.temp + '°';
+		htmlHumidity.innerHTML = 'Humidity' + weather.humidity + 'hPa';
+		htmlPressure.innerHTML = 'Pressure' + weather.pressure + 'hPa';
+	
+		main.appendChild(htmlWeather);
 		htmlWeather.appendChild(htmlCity);
-		htmlWeather.appendChild(htmlTemperature);
-		htmlWeather.appendChild(htmlPressure);
+		htmlWeather.appendChild(htmlTemp);
+		htmlWeather.appendChild(htmlImg);
+		htmlWeather.appendChild(htmlDesc);
 		htmlWeather.appendChild(htmlHumidity);
+		htmlWeather.appendChild(htmlPressure);
 	}
-	getWeather(id) {
-		return document.querySelector('#' + id);
-	}
-	getForecastContainer() {
-		return this.forecastContainer;
-	}
-	clearCity(){
-		document.querySelector('#city').value = '';
-	}
+
+		
 }
 
-class Db {
-	constructor() {
-		this.lsForecastsKey = 'forecasts';
-	}
-
-	saveForecasts(forecasts) {
-		localStorage.setItem(this.lsForecastsKey, JSON.stringify(forecasts));
-	}
-	getForecasts() {
-		if (localStorage.getItem(this.lsForecastsKey) != null) {
-			return JSON.parse(localStorage.getItem(this.lsForecastsKey));
-		}
-
-	}
-}
+ 

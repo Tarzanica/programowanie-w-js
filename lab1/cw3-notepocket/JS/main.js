@@ -71,6 +71,7 @@ function createNote(){
 		htmlButton.classList.add('removeBtn');
 		htmlPinnedBtn.type = 'checkbox';
 		htmlPinnedBtn.id = 'check';
+		htmlPinnedBtn.className = 'inputBig';
 		htmlLabel.htmlFor = 'check';
 
 		htmlNote.style.borderBottomColor = note.colour;
