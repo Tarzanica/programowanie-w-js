@@ -7,10 +7,29 @@ body{
 /* main-container, input and button 'dodaj' */
 
 .main-container {
-    margin-top: 30px;
-    width: 40%;
+    margin-top: 0;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.add-weather{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    color: #fff;
+    box-shadow: 10px 10px 10px 10px rgba(0,0,0, 0.1);
+}
+
+.add-weather h1{
+    font-size: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 100px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-shadow: 0 30px 12px rgba(0,0,0, 0.1);
 }
 
 form{
@@ -23,7 +42,8 @@ form{
     width: 350px;
     height: 50px;
     padding-left: 8px;
-    margin: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
     line-height: 30px;
     border-radius: 10px;
     border: 3px solid#003973;
@@ -39,6 +59,8 @@ input::placeholder{
 
 .add-weather button{
     border: none;
+    margin-top: auto;
+    margin-bottom: auto;
     font-size: 25px;
     height: 55px;
     line-height: 25px;
@@ -93,14 +115,15 @@ main {
 
 .weather-img{
     float: right;
-    width: 200px;
+    width: 150px;
     margin-left: auto;
     margin-right: auto;
-    transform: translateY(-60px);
+    transform: translateY(-40px);
 }
 
 .weather-img img{
-    width: 180px;
+    object-fit: cover;
+    width: 130px;
 }
 
 .desc {
@@ -112,9 +135,8 @@ main {
 }
 
 .temp{
-    margin-left: 30px;
     font-size: 60px;
-    transform: translateY(-50px);
+    transform: translateY(-65px);
 }
 
 .img, .temp{

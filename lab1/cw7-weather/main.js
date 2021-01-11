@@ -1,9 +1,10 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
+const localStorageWeatherKey = 'weatherApi';
 const main = document.querySelector('main');
 let addBtn = document.querySelector('.newWeatherForecast');
 let input = document.querySelector('.city');
 const weather = {};
-let weathers = [];
+let forecasts = [];
 addBtn.addEventListener('click', function(){
 	getWeatherData();
 
@@ -20,7 +21,8 @@ function getWeatherData(){
 			weather.image = data['weather'][0]['icon'];
 			weather.wind = data['wind']['speed'];
 			weather.pressure = data['main']['pressure'];		
-			weathers.push(weather);	
+			forecasts.push(weather);	
+			localStorage.setItem(localStorageWeatherKey, JSON.stringify(forecasts));
 		})
 		.then(function(){
 			createWeatherNote();
@@ -30,8 +32,15 @@ function getWeatherData(){
 
 
 function createWeatherNote() {
+	const forecastsFromStorage = JSON.parse(localStorage.getItem(localStorageWeatherKey));
+	forecasts = forecastsFromStorage.map(weather => {
+		weather.createDate = new Date(weather.createDate);
+		return weather;
+	});
 
-	for (const weather of weathers){
+	main.innerHTML = '';
+
+	for (const weather of forecasts){
 		const htmlWeather = document.createElement('div');
 		const htmlCity = document.createElement('h1');
 		const htmlTemp = document.createElement('p');
@@ -51,7 +60,7 @@ function createWeatherNote() {
 		htmlImg.innerHTML = `<img src="http://openweathermap.org/img/wn/${weather.image}@2x.png"/>`;
 		htmlCity.innerHTML = weather.city;
 		htmlDesc.innerHTML = weather.desc;
-		htmlTemp.innerHTML = weather.temp + '°';
+		htmlTemp.innerHTML = weather.temp + '°C';
 		htmlWind.innerHTML = 'WIND <br><br>' + weather.wind + ' m/s';
 		htmlPressure.innerHTML = 'PRESSURE <br><br>' + weather.pressure + ' hPa';
 	
