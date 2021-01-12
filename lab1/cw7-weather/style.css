@@ -32,9 +32,8 @@ body{
     text-shadow: 0 30px 12px rgba(0,0,0, 0.1);
 }
 
-form{
-    bottom: 0;
-}
+
+
 .add-weather input{
     background-color: initial;
     color: white;
@@ -67,6 +66,21 @@ input::placeholder{
     outline: none;
 }
 
+.remove{
+    color: #fff;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: transparent !important;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    margin-left: 450px;
+}
+
+.remove:hover{
+    color: black;
+    border: 2px solid black;
+    transition: 0.3s;
+}
 .newWeatherForecast {background-image: linear-gradient(to right, #003973 0%, #E5E5BE  51%, #003973  100%)}
 .newWeatherForecast {
     margin: 10px;
