@@ -56,8 +56,8 @@ function displayForecast(weather){
 	const htmlTemp = document.createElement('p');
 	const htmlImg = document.createElement('div');
 	const htmlDesc = document.createElement('p');		
- 		const htmlWind = document.createElement('p');
- 		const htmlPressure = document.createElement('p');
+ 	const htmlWind = document.createElement('p');
+ 	const htmlPressure = document.createElement('p');
 
 	htmlWeather.classList.add('weather-container');
 	htmlWeather.addEventListener('click', function(){
