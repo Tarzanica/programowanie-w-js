@@ -9,7 +9,7 @@ getDataFromLocalStorage();
 displayNotes();
 
 function removeNote(e) {
-	let noteToRemove = e.target.parentNode;
+	let noteToRemove = e.target.parentNode.parentNode;
 	noteToRemove.parentNode.removeChild(noteToRemove);
 	notes.splice(noteToRemove, 1);
 	localStorage.setItem(lsNotesKey, JSON.stringify(notes));
@@ -43,6 +43,10 @@ function getDataFromLocalStorage(){
 	for (let i = 0; i < notesFromLocalStorage.length; i++) {
 		notes.push(notesFromLocalStorage[i]);		
 	}
+	notesFromLocalStorage.map( note => {
+		note.createDate = new Date(note.createDate);
+		return note;
+	});
 
 }
 
@@ -56,6 +60,7 @@ function displayNote(note){
 	const htmlNote = document.createElement('section');
 	const htmlTitle = document.createElement('h3');
 	const htmlContent = document.createElement('p');
+	const htmlBottomDiv = document.createElement('div');
 	const htmlTime = document.createElement('time');
 	const htmlButton = document.createElement('button');
 	const htmlPinnedBtn = document.createElement ('input');
@@ -64,6 +69,7 @@ function displayNote(note){
 	htmlNote.classList.add('note');
 	htmlTitle.innerHTML = note.title;
 	htmlContent.innerHTML = note.content;
+	htmlBottomDiv.classList.add('bottom-20');
 	htmlTime.innerHTML = note.createDate.toLocaleString();
 	htmlButton.innerHTML = 'Remove';
 	htmlButton.classList.add('removeBtn');
@@ -71,15 +77,9 @@ function displayNote(note){
 	htmlPinnedBtn.id = 'check';
 	htmlPinnedBtn.className = 'inputBig';
 	htmlLabel.htmlFor = 'check';
+	htmlLabel.classList.add = 'label-pin';
 
-	if (!htmlNote.style.backgroundColor == 'white') {
-		htmlNote.style.color = 'white';
-	}
-	else{
-		htmlNote.style.color = 'black';
-	}
-
-	htmlNote.style.backgroundColor = note.colour;
+	htmlNote.style.borderBottomColor = note.colour;
 	htmlPinnedBtn.addEventListener('click', function() {
 		if (htmlNote.parentNode == pinnedContainer) {
 			notesContainer.appendChild(htmlNote);
@@ -90,10 +90,11 @@ function displayNote(note){
 	htmlButton.addEventListener('click', removeNote);
 	htmlNote.appendChild(htmlTitle);
 	htmlNote.appendChild(htmlContent);
-	htmlNote.appendChild(htmlTime);
-	htmlNote.appendChild(htmlButton);
-	htmlNote.appendChild(htmlPinnedBtn);
-	htmlNote.appendChild(htmlLabel);
+	htmlNote.appendChild(htmlBottomDiv);
+	htmlBottomDiv.appendChild(htmlTime);
+	htmlBottomDiv.appendChild(htmlButton);
+	htmlBottomDiv.appendChild(htmlPinnedBtn);
+	htmlBottomDiv.appendChild(htmlLabel);
 
 	if(note.pinned == false){
 		notesContainer.appendChild(htmlNote);
