@@ -2,14 +2,13 @@
 let canvas = document.querySelector('.canvas');
 let hole = canvas.getContext('2d');
 const info = document.querySelector('.info');
-const body = document.body;
 let cw = canvas.width = window.innerWidth;
 let ch = canvas.height = window.innerHeight;
-let gameIsOn = false;
 let scoreCount = 0;
 let minute = 0;
 let second = 0;
 
+let ball;
 let holes = [];
 let hx, hy;
 let ballR = 15;
@@ -26,7 +25,6 @@ restart.addEventListener('click', resetGame());
 document.querySelector('.start').addEventListener('click', onStartClick);
 
 function onStartClick() {
-	gameIsOn = true;
 	timeCounter();
 
 	play();
@@ -48,15 +46,15 @@ function onStartClick() {
 }
 function play(){
 	requestAnimationFrame(play);
-	hole.clearRect(0, 0, window.innerWidth, innerHeight);
+
 	createBall();
 	moveBall();
 	checkForCollision();
 }
 
 function onDeviceOrientationChange(e) {
-	speedX = e.gamma/45; //alpha nie 
-	speedY = e.beta/45;
+	speedX = e.gamma/35; //alpha nie 
+	speedY = e.beta/35;
 }
 
 function timeCounter(){
@@ -73,7 +71,6 @@ function addTime(){
 	(second ? (second > 9 ? second : '0' + second) : '00');
 }
 function resetGame() {
-	gameIsOn = false;
 	scoreCount = 0;
 	holes = [];
 	minute = 0;
@@ -81,17 +78,18 @@ function resetGame() {
 }
 
 function createBall(){
-	hole.beginPath();
-	hole.fillStyle=' rgb(206, 36, 6)';
-	hole.arc(
+	ball = hole;
+	ball.beginPath();
+	ball.fillStyle=' rgb(206, 36, 6)';
+	ball.arc(
 		x,
 		y, 
 		ballR, 
 		0, 
 		2 * Math.PI
 	);
-	hole.stroke();
-	hole.fill();
+	ball.stroke();
+	ball.fill();
 }
 
 function moveBall(){
@@ -123,34 +121,22 @@ function makeHoles() {
 
 		holes.push(hole);
 	}
+	
 }
 
 function checkForCollision() {  
 
 	let dist = Math.sqrt(Math.pow((x - hx),2) + Math.pow((y - hy),2));
-	let rad = (ballR + radius) * (ballR + radius);
+	let rad = ballR + radius;
 
 	if (dist <= rad) {
 		scoreCount++;
-
-		console.log('super!', );
+		console.log(scoreCount);
+		
 	}
 
-	
-	// for (let i = 0; i < holes.length; i++) {
-	// 	let currentHole = holes[i];         
-	// 	let ball = document.querySelector('.ball');
-        
-	// 	currentHole = {radius: radius, x: Math.random() * canvas.width, y: Math.random() * canvas.height};
-	// 	ball = {radius: 15, x: x, y: y };
-
-	// 	var dx = currentHole.x - ball.x;
-	// 	var dy = currentHole.y - ball.y;
-	// 	var distance = Math.sqrt(dx * dx + dy * dy);
-
-	// 	if (distance < currentHole.radius + ball.radius) {
-	// 		scoreCount++;
-	// 	}
+	// if (ball.x == window.screenTop || ball.y == window.screeY){
+	// 	window.alert('O nie!');
 	// }
 }
 
