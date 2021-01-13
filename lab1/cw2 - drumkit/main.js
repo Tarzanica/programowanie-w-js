@@ -79,13 +79,13 @@ function playSound(soundId){
 	sound.play();  
 }
 
-function prevMultipleClicking(){
-	setTimeout(() =>{
-		if (playBtn) {
-			playBtn.className = 'disabled';
-		}
-	},soundObj.time);
-	playBtn.remove = 'disabled';
-}
+// function prevMultipleClicking(){
+// 	setTimeout(() =>{
+// 		if (playBtn) {
+// 			playBtn.className = 'disabled';
+// 		}
+// 	},soundObj.time);
+// 	playBtn.remove = 'disabled';
+// }
 
-prevMultipleClicking();
+//prevMultipleClicking();

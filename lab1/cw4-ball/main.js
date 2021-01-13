@@ -1,52 +1,67 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 let holes = [];
+const main = document.querySelector('main');
+const restart = document.querySelector('restart');
+//const hole = document.querySelectorAll('.hole');
+const body = document.body;
+let gameIsOn = false;
+//let dist;
 let speedX = 0;
 let speedY = 0;
-let x = 200;
-let y = 200;
+let x = 100;
+let y = 100;
+let minute = 0;
+let second = 0;
 
 window.addEventListener('deviceorientation', onDeviceOrientationChange);
-
 document.querySelector('.start').addEventListener('click', onStartClick);
-// document.querySelectorAll('.restart').addEventListener('click', onRestart);
+document.querySelector('.restart').addEventListener('click', restartGame);
 
 function onStartClick() {
+	gameIsOn = true;
 	let scoreCount = 0;
+	timeCounter();
+
 	const btn = document.querySelector('.start');
 	btn.classList.add('remove');
+	//restart.remove = 'remove'
 
 	const score = document.createElement('span');
 	score.classList.add('score');
 	score.innerHTML = 'SCORE: ' + scoreCount;
-	document.body.appendChild(score);
+	body.appendChild(score);
 
 	let ball = document.createElement('div');
 	ball.classList.add('ball');
-	document.body.appendChild(ball);
+	main.appendChild(ball);
+
+	const timer = document.createElement('span');
+	timer.classList.add('timer');
+	timer.innerHTML = '00:00';
+	body.appendChild(timer);
 
 	makeHoles();
-	onDeviceOrientationChange(event);
-	checkCollision();
+	onDeviceOrientationChange();
+	//checkCollision();
 }
 
 function onDeviceOrientationChange(event) {
-	let ball = document.querySelector('.ball');
-	speedX = event.alpha/60; //alpha nie 
-	speedY = event.beta/60;
+	speedX = event.alpha; //alpha nie 
+	speedY = event.beta;
 
-	if ((innerWidth > speedX  + x > 0 )) {
-		x += speedX;
-		ball.style.left = x + 'px';        
+	if ((innerWidth > speedX  + x + 100> 0 )) {
+		x += speedX;   
+		document.querySelector('.ball').style.left = x + 'px';  
 	}
         
-	if  (window.innerHeight > speedY + y > 0) {
-		y += speedY;
-		ball.style.top = y + 'px';       
+	if  (window.innerHeight > speedY + y + 100> 0) {
+		y += speedY;  
+		document.querySelector('.ball').style.top = y + 'px';    
 	}
 }
 
-
 function makeHoles() {
-	for (let i = 1; i < window.innerWidth/100; i++) {
+	for (let i = 1; i < window.innerWidth/120; i++) {
 		let hole = document.createElement('div');
 
 		hole.classList.add('hole');
@@ -55,22 +70,42 @@ function makeHoles() {
 		holeNumber.id = holeNumber.innerHTML;
 		hole.appendChild(holeNumber);
 
-		hole.style.left = 100 * i + Math.random() * 80 + 'px';
-		hole.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+		hole.style.left =  Math.floor(Math.random() * main.offsetWidth + 70) + 'px';
+		hole.style.top = Math.floor(Math.random() * (main.offsetHeight) +50) + 'px';
 
+		if(hole.style.left >= main.offsetWidth)
+			hole.style.transform = 'translateX(-100px)';
+		if(hole.style.top >= main.offsetHeight)
+			hole.style.top = 'translateY(-50px)';
 		holes.push(hole);
-		document.body.appendChild(hole);
+		main.appendChild(hole);
 	}
 
 }
 
-function checkCollision() {
-	for (let i = 0; i < holes.length; i++) {
-		let currentHole = holes[i];
-		let ball = document.querySelector('.ball');
+function restartGame(){
+	gameIsOn = false;
 
-		if ((ball.style.top == currentHole.style.top) || (ball.style.left == currentHole.style.left)) {
-			ball.style.background = 'yellow';
-		}
-	}
 }
+
+// function checkCollision(){
+
+// 	if (calculateDistance().dist >= 40)
+// 		return;
+// 	else{
+// 		scoreCount++;
+// 	}
+// }
+
+// function getCoords(el){
+// 	const rect = el.getBoundingClientRect();
+// 	let y =  rect.left + window.scrollX;
+// 	let x =	 rect.top + window.scrollY;
+// }
+
+// function calculateDistance(){
+// 	getCoords(ball);
+// 	getCoords(hole);
+// 	dist = Math.sqrt(Math.Pow((ball.x - hole.x),2) + Math.pow((ball.y - hole.y)));
+// }
+

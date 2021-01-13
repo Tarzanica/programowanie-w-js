@@ -4,6 +4,16 @@ body {
     overflow: hidden;
 }
 
+main{
+    margin-top: 50px;
+    margin-bottom:auto;
+    margin-left:auto;
+    margin-right:auto;
+    width: 90vw;
+    height: 90vh;
+    border: 2px solid black;
+}
+
 .canvas {
     margin-left: auto;
     margin-right: auto;
@@ -36,10 +46,17 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.timer{
+    position: absolute;
+    top: 2%;
+    right: 5%;
+}
+
+
 
 .restart {
     position: fixed;
-    top: 5%;
+    top: 2%;
     left: 3%;
     font-size: 15px;
     padding: 7px;
@@ -48,6 +65,9 @@ body {
     letter-spacing: 1.6;
 }
 
+.hole span{
+    padding-left: 15px;
+}
 
 .hole {
     position: absolute;
@@ -64,13 +84,11 @@ body {
 	height: 30px;
 	width: 30px;
     border-radius: 50%;
-    left: 200px;
-    top: 200px;
-
+    left: 100px;
+    top: 100px;
 }
 
 span {
-    padding: 19px;
     font-size: 30px;
     color: rgb(255, 255, 255);
     text-shadow: 2px rgb(61, 62, 68);
