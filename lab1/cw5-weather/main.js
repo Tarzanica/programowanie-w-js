@@ -93,8 +93,7 @@ function createWeatherNote() {
 function deleteWeather(htmlTag,weather){
 	htmlTag.remove();
 	forecasts.splice(weather,1);
-	localStorage.setItem(lsWeatherKey,JSON.stringify(forecasts));
-	
+	localStorage.setItem(lsWeatherKey,JSON.stringify(forecasts));	
 }
 
 function removeAllForecasts(){

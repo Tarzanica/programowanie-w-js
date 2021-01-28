@@ -217,8 +217,11 @@ main {
     padding-bottom: 10px;
     border-bottom: 1px solid black;
 }
+
+
+
 .bottom-20{
-    position: absolute;
+     position: static !important;
     padding-top: 10px;
     bottom: 5px;
 }

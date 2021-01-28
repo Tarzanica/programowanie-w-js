@@ -2,6 +2,7 @@ body {
     font-family: sans-serif;
     background-color: rgb(211, 211, 212);
     overflow: hidden;
+    position: relative;
 }
 
 main{
@@ -19,7 +20,17 @@ main{
     margin-right: auto;
 }
 
+.backGroundGame{
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(205, 239, 255);
+    position: absolute;
+    z-index: 1000;
+}
+
 .start {
+    z-index: 1000;
     position: fixed;
     padding: 30px;
     font-size: 80px;
@@ -36,7 +47,6 @@ main{
 
 .score {
     position: absolute;
-    z-index: 999;
     font-size: 25px;
     background-color: cadetblue;
     color: white;
@@ -52,7 +62,19 @@ main{
     right: 5%;
 }
 
-
+.message{
+    background-color: rgb(229, 226, 226);
+    padding: 20px;
+    color: black;
+    z-index: 1000;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1.6;
+    position: fixed;
+    bottom: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .restart {
     position: fixed;
